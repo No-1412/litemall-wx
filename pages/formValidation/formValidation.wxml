@@ -1,0 +1,112 @@
+<view class="container">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <tui-list-cell hover="{{false}}">
+      <view class="tui-line-cell">
+        <view class="tui-title">*问题标题</view>
+        <input placeholder-class="phcolor" class="tui-input" name="title" placeholder="请输入问题标题" maxlength="50" type="text" />
+      </view>
+    </tui-list-cell>
+    <tui-list-cell hover="{{false}}">
+      <view class="tui-line-cell">
+        <view class="tui-title">*问题来源</view>
+        <input placeholder-class="phcolor" class="tui-input" name="origin" placeholder="请输入问题来源" maxlength="50" />
+      </view>
+    </tui-list-cell>
+    <tui-list-cell hover="{{false}}">
+      <view class="tui-title">*设备类型</view>
+      <!-- <view class="tui-line-cell"> -->
+        <view class="tui-upload-box">
+          <view>
+            <radio-group class="radio-group" name="deviceType">
+              <label class="tui-radio">
+                  <radio wx:for-items="{{items}}" wx:key="code" value="{{item.code}}" color="#5677fc" checked="{{item.checked}}">
+                    <text>{{item.name}}</text>
+                  </radio>
+              </label>
+            </radio-group>
+          </view>
+        </view>
+      <!-- </view> -->
+    </tui-list-cell>
+
+    <tui-list-cell hover="{{false}}">
+      <view class="tui-line-cell">
+        <view class="tui-title">*设备名称</view>
+        <input placeholder-class="phcolor" class="tui-input" name="deviceName" placeholder="请输入设备名称" maxlength="50" type="text" />
+      </view>
+    </tui-list-cell>
+    <tui-list-cell hover="{{false}}">
+      <view class="tui-line-cell">
+        <view class="tui-title">设备编号</view>
+        <input placeholder-class="phcolor" class="tui-input" name="deviceCode" placeholder="请输入设备编号" maxlength="50" type="text" />
+      </view>
+    </tui-list-cell>
+    <!-- 需要树组件 -->
+    <!-- <tui-list-cell hover="{{false}}">
+      <view class="tui-line-cell">
+        <view class="tui-title">点位</view>
+        <input placeholder-class="phcolor" class="tui-input" name="idcard" placeholder="请选择点位" maxlength="50" type="text" />
+      </view>
+    </tui-list-cell> -->
+    <tui-list-cell hover="{{false}}">
+      <view class="tui-line-cell">
+        <view class="tui-title">设备ip</view>
+        <input placeholder-class="phcolor" class="tui-input" name="deviceIp" placeholder="请输入设备ip" maxlength="50" type="text" />
+      </view>
+    </tui-list-cell>
+    <tui-list-cell hover="{{false}}">
+      <view class="tui-line-cell">
+        <view class="tui-title">车道号</view>
+        <input placeholder-class="phcolor" class="tui-input" name="laneNum" placeholder="请输入车道号" maxlength="50" type="text" />
+      </view>
+    </tui-list-cell>
+    <tui-list-cell hover="{{false}}">
+      <view class="tui-title">预警级别</view>
+        <view class="tui-upload-box">
+          <view>
+            <radio-group class="radio-group" name="warnLevel">
+              <label class="tui-radio">
+                  <radio wx:for-items="{{warnLevels}}" wx:key="code" value="{{item.code}}" color="#5677fc" checked="{{item.checked}}">
+                    <text>{{item.name}}</text>
+                  </radio>
+              </label>
+            </radio-group>
+          </view>
+        </view>
+    </tui-list-cell>
+    <tui-list-cell hover="{{false}}">
+      <view class="tui-line-cell">
+        <view class="tui-title">预警内容</view>
+        <input placeholder-class="phcolor" class="tui-input" name="warnContent" placeholder="请输入预警内容" maxlength="50" />
+      </view>
+    </tui-list-cell>
+    <!-- <tui-list-cell hover="{{false}}">
+      <view class="tui-line-cell">
+        <view class="tui-title">金额</view>
+        <input placeholder-class="phcolor" class="tui-input" name="amount" placeholder="请输入金额,允许保留两位小数" maxlength="50" type="digit" />
+      </view>
+    </tui-list-cell> -->
+
+    <tui-list-cell hover="{{false}}">
+      <view class="tui-title tui-top40">图片上传（请点击加号上传）</view>
+    </tui-list-cell>
+    <tui-list-cell hover="{{false}}">
+      <view class="tui-upload-box">
+      <view class="tui-upload-item" wx:for="{{files}}" wx:key="{{index}}">
+        <image src="{{item}}" class='tui-upload-img' bindtap="previewImage" mode="aspectFill" id="{{item}}"></image>
+        <tui-icon name="close-fill" tui-icon-class="tui-upload-del" data-index="{{index}}" catchtap="deleteImage"></tui-icon>
+      </view>
+      <view class="tui-upload-item tui-upload-add" hidden="{{files.length>=9}}" hover-class="tui-opcity" hover-stay-time="150" bindtap="chooseImage">
+        <text>+</text>
+      </view>
+    </view>
+    </tui-list-cell>
+
+    <!-- <view class="tui-tips">更多验证请参考文档</view> -->
+
+    <view class="tui-btn-box">
+      <button class="btn-primary" hover-class="btn-hover" formType="submit" type="primary">Submit</button>
+      <button class="btn-primary btn-gray" hover-class="btn-gray-hover" formType="reset">Reset</button>
+    </view>
+  </form>
+</view>

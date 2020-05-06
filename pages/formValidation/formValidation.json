@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "问题上报",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "tui-list-cell":"/components/list-cell/list-cell",
+    "tui-icon": "../../../components/icon/icon"
+  }
+}
