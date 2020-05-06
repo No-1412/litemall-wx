@@ -17,7 +17,8 @@ Page({
     //图片地址
     imageList: [],
     //上传状态：1-上传成功 2-上传中 3-上传失败
-    statusArr: []
+    statusArr: [],
+    limit: 9
   },
   onLoad: function(options) {
     this.init();
@@ -261,7 +262,7 @@ Page({
     return new Promise((resolve, reject) => {
       wx.uploadFile({
         url: api.Upload,
-        name: this.data.fileKeyName,
+        name: 'file',
         header: {
           //设置请求头
         },
