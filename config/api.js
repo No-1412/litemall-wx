@@ -102,7 +102,10 @@ module.exports = {
   UserIndex: WxApiRoot + 'user/index', //个人页面用户相关信息
   IssueList: WxApiRoot + 'issue/list', //帮助信息
 
-  Upload: BchtApiRoot + '', //文件上传
+  Upload: BchtApiRoot + 'uncheck/uploadIssueImg', //文件上传
+  Download: BchtApiRoot + 'uncheck/download', //文件下载
   DeviceType: BchtApiRoot + 'drop/getDeviceType', //获取设备类型
   WarnLevel: BchtApiRoot + 'dict/getWarnLevel', //获取预警级别
+  MaintenanceAdd: BchtApiRoot + 'maintenance/manage/addMaintenance', //新增维保管理信息（问题上报）
+  MaintenanceList: BchtApiRoot + 'maintenance/manage/getMaintenanceList', //获取维保管理列表
 };

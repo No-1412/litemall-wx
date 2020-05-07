@@ -2,18 +2,18 @@
   <form bindsubmit="formSubmit" bindreset="formReset">
     <tui-list-cell hover="{{false}}">
       <view class="tui-line-cell">
-        <view class="tui-title">*问题标题</view>
+        <view class="tui-title"><span style="color: #ff0c0c;">*</span>问题标题</view>
         <input placeholder-class="phcolor" class="tui-input" name="title" placeholder="请输入问题标题" maxlength="50" type="text" />
       </view>
     </tui-list-cell>
     <tui-list-cell hover="{{false}}">
       <view class="tui-line-cell">
-        <view class="tui-title">*问题来源</view>
+        <view class="tui-title"><span style="color: #ff0c0c;">*</span>问题来源</view>
         <input placeholder-class="phcolor" class="tui-input" name="origin" placeholder="请输入问题来源" maxlength="50" />
       </view>
     </tui-list-cell>
     <tui-list-cell hover="{{false}}">
-      <view class="tui-title">*设备类型</view>
+      <view class="tui-title"><span style="color: #ff0c0c;">*</span>设备类型</view>
       <!-- <view class="tui-line-cell"> -->
         <view class="tui-upload-box">
           <view>
@@ -31,7 +31,7 @@
 
     <tui-list-cell hover="{{false}}">
       <view class="tui-line-cell">
-        <view class="tui-title">*设备名称</view>
+        <view class="tui-title"><span style="color: #ff0c0c;">*</span>设备名称</view>
         <input placeholder-class="phcolor" class="tui-input" name="deviceName" placeholder="请输入设备名称" maxlength="50" type="text" />
       </view>
     </tui-list-cell>
@@ -92,21 +92,22 @@
     </tui-list-cell>
     <tui-list-cell hover="{{false}}">
       <view class="tui-upload-box">
-      <view class="tui-upload-item" wx:for="{{files}}" wx:key="{{index}}">
-        <image src="{{item}}" class='tui-upload-img' bindtap="previewImage" mode="aspectFill" id="{{item}}"></image>
-        <tui-icon name="close-fill" tui-icon-class="tui-upload-del" data-index="{{index}}" catchtap="deleteImage"></tui-icon>
+        <!-- <view class="tui-upload-item" wx:for="{{files}}" wx:key="{{index}}"> -->
+        <view class="tui-upload-item" wx:for="{{imageList}}" wx:key="{{index}}">
+          <image src="{{url + item}}" class='tui-upload-img' bindtap="previewImage" mode="aspectFill" id="{{item}}"></image>
+          <tui-icon name="close-fill" tui-icon-class="tui-upload-del" data-index="{{index}}" catchtap="delImage"></tui-icon>
+        </view>
+        <view class="tui-upload-item tui-upload-add" hidden="{{files.length>=9}}" hover-class="tui-opcity" hover-stay-time="150" bindtap="chooseImage">
+          <text>+</text>
+        </view>
       </view>
-      <view class="tui-upload-item tui-upload-add" hidden="{{files.length>=9}}" hover-class="tui-opcity" hover-stay-time="150" bindtap="chooseImage">
-        <text>+</text>
-      </view>
-    </view>
     </tui-list-cell>
 
     <!-- <view class="tui-tips">更多验证请参考文档</view> -->
 
     <view class="tui-btn-box">
-      <button class="btn-primary" hover-class="btn-hover" formType="submit" type="primary">Submit</button>
-      <button class="btn-primary btn-gray" hover-class="btn-gray-hover" formType="reset">Reset</button>
+      <button class="btn-primary" hover-class="btn-hover" formType="submit" type="primary">提交</button>
+      <!-- <button class="btn-primary btn-gray" hover-class="btn-gray-hover" formType="reset">Reset</button> -->
     </view>
   </form>
 </view>

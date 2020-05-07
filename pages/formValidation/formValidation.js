@@ -18,7 +18,8 @@ Page({
     imageList: [],
     //上传状态：1-上传成功 2-上传中 3-上传失败
     statusArr: [],
-    limit: 9
+    limit: 9,
+    url: api.Download + '?path='
   },
   onLoad: function(options) {
     this.init();
@@ -26,49 +27,73 @@ Page({
   formSubmit: function(e) {
     //表单规则
     let rules = [{
-      name: "name",
-      rule: ["required", "isChinese", "minLength:2", "maxLength:6"], //可使用区间，此处主要测试功能
-      msg: ["请输入姓名", "姓名必须全部为中文", "姓名必须2个或以上字符", "姓名不能超过6个字符"]
-    }, {
-      name: "sex",
-      rule: ["required"],
-      msg: ["请选择性别"]
-    }, {
-      name: "age",
-      rule: ["required", "isNum", "range:[0,150]"],
-      msg: ["请输入年龄", "请输入正确的年龄", "请输入正确的年龄范围：0-150"]
-    }, {
-      name: "mobile",
-      rule: ["required", "isMobile"],
-      msg: ["请输入手机号", "请输入正确的手机号"]
-    }, {
-      name: "email",
-      rule: ["required", "isEmail"],
-      msg: ["请输入邮箱", "请输入正确的邮箱"]
-    }, {
-      name: "idcard",
-      rule: ["required", "isIdCard"],
-      msg: ["请输入身份证号码", "请输入正确的身份证号码"]
-    }, {
-      name: "pwd",
-      rule: ["required", "isEnAndNo"],
-      msg: ["请输入密码", "密码为8~20位数字和字母组合"]
-    }, {
-      name: "pwd2",
-      rule: ["required", "isSame:pwd"],
-      msg: ["请输入确认密码", "两次输入的密码不一致"]
-    }, {
-      name: "range",
-      rule: ["required", "range:[3,20]"],
-      msg: ["请输入区间数字", "请输入3-20之间的数字"]
-    }, {
-      name: "amount",
-      rule: ["required", "isAmount"],
-      msg: ["请输入金额", "请输入正确的金额，允许保留两位小数"]
+      name: "title",
+      rule: ["required"], //可使用区间，此处主要测试功能
+      msg: ["请输入问题标题"]
+    },{
+      name: "origin",
+      rule: ["required"], //可使用区间，此处主要测试功能
+      msg: ["请输入问题来源"]
+    },{
+      name: "deviceType",
+      rule: ["required"], //可使用区间，此处主要测试功能
+      msg: ["请选择设备类型"]
+    },{
+      name: "deviceName",
+      rule: ["required"], //可使用区间，此处主要测试功能
+      msg: ["请输入设备名称"]
     }];
+    // let rules = [{
+    //   name: "name",
+    //   rule: ["required", "isChinese", "minLength:2", "maxLength:6"], //可使用区间，此处主要测试功能
+    //   msg: ["请输入姓名", "姓名必须全部为中文", "姓名必须2个或以上字符", "姓名不能超过6个字符"]
+    // }, {
+    //   name: "sex",
+    //   rule: ["required"],
+    //   msg: ["请选择性别"]
+    // }, {
+    //   name: "age",
+    //   rule: ["required", "isNum", "range:[0,150]"],
+    //   msg: ["请输入年龄", "请输入正确的年龄", "请输入正确的年龄范围：0-150"]
+    // }, {
+    //   name: "mobile",
+    //   rule: ["required", "isMobile"],
+    //   msg: ["请输入手机号", "请输入正确的手机号"]
+    // }, {
+    //   name: "email",
+    //   rule: ["required", "isEmail"],
+    //   msg: ["请输入邮箱", "请输入正确的邮箱"]
+    // }, {
+    //   name: "idcard",
+    //   rule: ["required", "isIdCard"],
+    //   msg: ["请输入身份证号码", "请输入正确的身份证号码"]
+    // }, {
+    //   name: "pwd",
+    //   rule: ["required", "isEnAndNo"],
+    //   msg: ["请输入密码", "密码为8~20位数字和字母组合"]
+    // }, {
+    //   name: "pwd2",
+    //   rule: ["required", "isSame:pwd"],
+    //   msg: ["请输入确认密码", "两次输入的密码不一致"]
+    // }, {
+    //   name: "range",
+    //   rule: ["required", "range:[3,20]"],
+    //   msg: ["请输入区间数字", "请输入3-20之间的数字"]
+    // }, {
+    //   name: "amount",
+    //   rule: ["required", "isAmount"],
+    //   msg: ["请输入金额", "请输入正确的金额，允许保留两位小数"]
+    // }];
     //进行表单检查
     let formData = e.detail.value;
     let checkRes = form.validation(formData, rules);
+    if (checkRes) {
+      wx.showToast({
+        title: checkRes,
+        icon: "none"
+      });
+      return;
+    }
     // if (!checkRes) {
     //   wx.showToast({
     //     title: "验证通过!",
@@ -88,25 +113,23 @@ Page({
     // }
 
     let that = this;
-    util.request(api.IndexUrl).then(function(res) {
-      if (res.errno === 0) {
-        that.setData({
-          newGoods: res.data.newGoodsList,
-          hotGoods: res.data.hotGoodsList,
-          topics: res.data.topicList,
-          brands: res.data.brandList,
-          floorGoods: res.data.floorGoodsList,
-          banner: res.data.banner,
-          groupons: res.data.grouponList,
-          channel: res.data.channel,
-          coupon: res.data.couponList
+    formData.imgPaths = that.data.imageList.toString();
+    util.request(api.MaintenanceAdd, formData, "POST").then(function (res) {
+      if (res.code == 0) {
+        wx.showToast({
+          title: "巡检问题上报成功",
+          icon: "none"
+        });
+        that.onLoad();
+      } else {
+        wx.showToast({
+          title: res.msg,
+          icon: "none"
         });
       }
-    });
-    util.request(api.GoodsCount).then(function (res) {
-      that.setData({
-        goodsCount: res.data
-      });
+      // that.setData({
+      //   goodsCount: res.data
+      // });
     });
   },
   formReset: function(e) {
@@ -263,27 +286,26 @@ Page({
       wx.uploadFile({
         url: api.Upload,
         name: 'file',
-        header: {
+        // header: {
           //设置请求头
-        },
+        // },
         formData: {},
         filePath: url,
         success: function(res) {
-          console.log(res)
           if (res.statusCode == 200) {
             //返回结果 此处需要按接口实际返回进行修改
             let d = JSON.parse(res.data.replace(/\ufeff/g, "") || "{}")
             //判断code，以实际接口规范判断
             if (d.code % 100 === 0) {
               // 上传成功 d.url 为上传后图片地址，以实际接口返回为准
-              if (d.url) {
+              if (d.data) {
                 let value = `imageList[${index}]`
                 _this.setData({
-                  [value]: d.url
+                  [value]: d.data
                 })
               }
               _this.setData({
-                [status]: d.url ? "1" : "3"
+                [status]: d.data ? "1" : "3"
               })
             } else {
               // 上传失败
