@@ -20,11 +20,14 @@ Page({
     statusArr: [],
     limit: 9,
     url: api.Download + '?path=',
-    unnormalizedValue:[]
+    unnormalizedValue: []
   },
   onLoad: function(options) {
     this.init();
   },
+  // onShow: function () {
+  //   this.init();
+  // },
   formSubmit: function(e) {
     //表单规则
     let rules = [{
@@ -115,14 +118,19 @@ Page({
 
     let that = this;
     formData.imgPaths = that.data.imageList.toString();
-    if (that.data.dwid) formData.dwid = that.data.dwid;
+    if (that.data.dwInfo) {
+      formData.dwid = that.data.dwInfo.id;
+      formData.dwName = that.data.dwInfo.name;
+    }
     util.request(api.MaintenanceAdd, formData, "POST").then(function (res) {
       if (res.code == 0) {
         wx.showToast({
           title: "巡检问题上报成功",
           icon: "none"
         });
-        that.onLoad();
+        wx.switchTab({
+          url: '/pages/maintenance/maintenance'
+        });
       } else {
         wx.showToast({
           title: res.msg,
@@ -145,7 +153,7 @@ Page({
     util.request(api.DeviceType).then(function(res) {
       if (res.code === 0) {
         that.setData({ 
-          items: res.data,
+          items: res.data
         });
       }
     });
@@ -179,12 +187,10 @@ Page({
     for (let item of imgArr) {
       status.push("1")
     }
-    console.log(6666666666666666666666666)
-    console.log(this.data.value)
     this.setData({
       imageList: [...imgArr],
       statusArr: status,
-      unnormalizedValue: this.data.value
+      formData: {}
     })
   },
 
@@ -374,9 +380,9 @@ Page({
   },
   selThis(e) {
     console.log(e.detail);
-    this.data.dwid = e.detail.id;
+    this.data.dwInfo = e.detail;
     wx.showToast({
-      title: '已选中 ' + e.detail.name,
+      title: '已选中 ' + this.data.dwInfo.name,
       icon: "none"
     });
   }

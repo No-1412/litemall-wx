@@ -3,13 +3,13 @@
     <tui-list-cell hover="{{false}}">
       <view class="tui-line-cell">
         <view class="tui-title"><span style="color: #ff0c0c;">*</span>问题标题</view>
-        <input placeholder-class="phcolor" class="tui-input" name="title" placeholder="请输入问题标题" maxlength="50" type="text" />
+        <input placeholder-class="phcolor" class="tui-input" name="title" value="{{formData.title}}" placeholder="请输入问题标题" maxlength="50" type="text" />
       </view>
     </tui-list-cell>
     <tui-list-cell hover="{{false}}">
       <view class="tui-line-cell">
         <view class="tui-title"><span style="color: #ff0c0c;">*</span>问题来源</view>
-        <input placeholder-class="phcolor" class="tui-input" name="origin" placeholder="请输入问题来源" maxlength="50" />
+        <input placeholder-class="phcolor" class="tui-input" name="origin" value="{{formData.origin}}" placeholder="请输入问题来源" maxlength="50" />
       </view>
     </tui-list-cell>
     <tui-list-cell hover="{{false}}">
@@ -32,13 +32,13 @@
     <tui-list-cell hover="{{false}}">
       <view class="tui-line-cell">
         <view class="tui-title"><span style="color: #ff0c0c;">*</span>设备名称</view>
-        <input placeholder-class="phcolor" class="tui-input" name="deviceName" placeholder="请输入设备名称" maxlength="50" type="text" />
+        <input placeholder-class="phcolor" class="tui-input" name="deviceName" value="{{formData.deviceName}}" placeholder="请输入设备名称" maxlength="50" type="text" />
       </view>
     </tui-list-cell>
     <tui-list-cell hover="{{false}}">
       <view class="tui-line-cell">
         <view class="tui-title">设备编号</view>
-        <input placeholder-class="phcolor" class="tui-input" name="deviceCode" placeholder="请输入设备编号" maxlength="50" type="text" />
+        <input placeholder-class="phcolor" class="tui-input" name="deviceCode" value="{{formData.deviceCode}}" placeholder="请输入设备编号" maxlength="50" type="text" />
       </view>
     </tui-list-cell>
     <!-- 需要树组件 -->
@@ -51,13 +51,13 @@
     <tui-list-cell hover="{{false}}">
       <view class="tui-line-cell">
         <view class="tui-title">设备ip</view>
-        <input placeholder-class="phcolor" class="tui-input" name="deviceIp" placeholder="请输入设备ip" maxlength="50" type="text" />
+        <input placeholder-class="phcolor" class="tui-input" name="deviceIp" value="{{formData.deviceIp}}" placeholder="请输入设备ip" maxlength="50" type="text" />
       </view>
     </tui-list-cell>
     <tui-list-cell hover="{{false}}">
       <view class="tui-line-cell">
         <view class="tui-title">车道号</view>
-        <input placeholder-class="phcolor" class="tui-input" name="laneNum" placeholder="请输入车道号" maxlength="50" type="text" />
+        <input placeholder-class="phcolor" class="tui-input" name="laneNum" value="{{formData.laneNum}}" placeholder="请输入车道号" maxlength="50" type="text" />
       </view>
     </tui-list-cell>
     <tui-list-cell hover="{{false}}">
@@ -82,7 +82,7 @@
       <view class="tui-title tui-top40">预警内容</view>
     </tui-list-cell>
     <view class="tui-cells">
-      <textarea class="tui-textarea" name="warnContent" placeholder="请输入预警内容" maxlength="500" placeholder-class="tui-phcolor-color" />
+      <textarea class="tui-textarea" name="warnContent" value="{{formData.warnContent}}" placeholder="请输入预警内容" maxlength="500" placeholder-class="tui-phcolor-color" />
       <!-- <view class="tui-textarea-counter">0/500</view> -->
     </view>
     <!-- <tui-list-cell hover="{{false}}">
@@ -108,7 +108,7 @@
       </view>
     </tui-list-cell>
     <text class="item">点位</text>
-    <path-view keepLoc="{{true}}" value="{{unnormalizedValue}}" btnTxt='选中本项' catchtapBtn="selThis" contentKey="name"></path-view>
+    <path-view value="{{unnormalizedValue}}" btnTxt='选中本项' catchtapBtn="selThis" contentKey="name"></path-view>
 
     <!-- <view class="tui-tips">更多验证请参考文档</view> -->
 
