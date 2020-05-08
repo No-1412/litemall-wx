@@ -19,10 +19,11 @@ Page({
     //上传状态：1-上传成功 2-上传中 3-上传失败
     statusArr: [],
     limit: 9,
-    url: api.Download + '?path=',
-    unnormalizedValue:[]
+    url: api.Download + '?path='
   },
   onLoad: function(options) {
+    console.log(222222222222222);
+    console.log(options.id);
     this.init();
   },
   formSubmit: function(e) {
@@ -115,7 +116,6 @@ Page({
 
     let that = this;
     formData.imgPaths = that.data.imageList.toString();
-    if (that.data.dwid) formData.dwid = that.data.dwid;
     util.request(api.MaintenanceAdd, formData, "POST").then(function (res) {
       if (res.code == 0) {
         wx.showToast({
@@ -160,31 +160,17 @@ Page({
       }
     });
   },
-  getDwTree: function () {
-    let that = this;
-    util.request(api.SiteTree).then(function(res) {
-      if (res.code === 0) {
-        that.setData({
-          unnormalizedValue: res.data
-        });
-      }
-    });
-  },
   init: function() {
     this.getDeviceType();
     this.getWarnLevel();
-    this.getDwTree();
     let imgArr = []
     let status = []
     for (let item of imgArr) {
       status.push("1")
     }
-    console.log(6666666666666666666666666)
-    console.log(this.data.value)
     this.setData({
       imageList: [...imgArr],
-      statusArr: status,
-      unnormalizedValue: this.data.value
+      statusArr: status
     })
   },
 
@@ -371,39 +357,5 @@ Page({
       loop: true,
       urls: this.data.imageList
     })
-  },
-  selThis(e) {
-    console.log(e.detail);
-    this.data.dwid = e.detail.id;
-    wx.showToast({
-      title: '已选中 ' + e.detail.name,
-      icon: "none"
-    });
   }
-  // onLoad() {
-  //   this.setData({
-  //     unnormalizedValue2: this.data.unnormalizedValue
-  //   },()=>{
-      // setTimeout(() => {
-      //   this.setData({
-      //     unnormalizedValue2: this.data.unnormalizedValue2.concat([
-      //       {
-      //         id: 8,
-      //         name: '8'
-      //       },
-      //       {
-      //         id: 9,
-      //         pid: 5,
-      //         name: '9'
-      //       },
-      //       {
-      //         id: 10,
-      //         pid: 1,
-      //         name: '10'
-      //       },
-      //     ])
-      //   })
-      // }, 2000);
-  //   });
-  // }
 })

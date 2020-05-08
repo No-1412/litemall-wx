@@ -20,38 +20,40 @@
   <!--新闻列表-->
   <view class="tui-news-view">
     <block wx:for="{{newsList}}" wx:key="{{index}}">
-      <tui-list-cell tui-cell-class="tui-news-cell {{item.isVideo || item.imgNum>1 ?  'tui-flex-column':'tui-flex-start'}}" last="{{newsList.length-1===index}}" id="{{index}}" bind:click="detail">
-        <view class="tui-news-picbox {{item.isVideo || item.imgNum>1?'tui-w-full':'tui-w220 tui-h165'}} {{item.imgNum>1?'tui-flex-between':''}}" wx:if="{{item.imgNum>0}}">
-          <block wx:for-items="{{item.img}}" wx:for-item="items" wx:key="{{index}}">
-            <image src="{{items}}" mode="widthFix" class="tui-block {{item.imgNum>1?'tui-one-third':''}} {{item.isVideo?'tui-w-full':''}}"></image>
-          </block>
-          <!-- <view class="tui-btm-badge" wx:if="{{item.isVideo || item.imgNum>3}}">{{item.isVideo?item.time:item.imgNum+'图'}}</view>
-          <view class="tui-video" wx:if="{{item.isVideo}}">
-            <tui-icon name="play" color="#fff" size="24" tui-icon-class="tui-icon"></tui-icon>
-          </view> -->
-        </view>
-        <view class="tui-news-tbox tui-flex-column tui-flex-between {{item.imgNum===1 && !item.isVideo?'tui-h165 tui-pl-20':''}}">
-          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">问题标题：</span>{{item.title}}</view>
-          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">问题来源：</span>{{item.origin}}</view>
-          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">设备类型：</span>{{item.deviceType}}</view>
-          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">设备名称：</span>{{item.deviceName}}</view>
-          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">设备编号：</span>{{item.deviceCode ? item.deviceCode : ''}}</view>
-          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">点位：</span>{{item.dwName ? item.dwName : ''}}</view>
-          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">设备ip：</span>{{item.deviceIp ? item.deviceIp : ''}}</view>
-          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">车道号：</span>{{item.laneNum ? item.laneNum : ''}}</view>
-          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">预警级别：</span>{{item.dwName ? item.dwName : ''}}</view>
-          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">预警内容：</span>{{item.warnContent ? item.warnContent : ''}}</view>
-          <!-- <view class="tui-sub-box {{!item.isVideo && item.imgNum===1?'':'tui-pt20'}}">
-            <view class="tui-sub-source">{{item.source}}</view>
-            <view class="tui-sub-cmt">
-              <view>{{item.cmtsNum}}评论</view>
-              <tui-tag size="small" plain="{{true}}" shape="circleRight" tui-tag-class="tui-tag" wx:if="{{item.isTop}}">
-                <view class="tui-scale">置顶</view>
-              </tui-tag>
-            </view>
-          </view> -->
-        </view>
-      </tui-list-cell>
+      <navigator url="/pages/maintenanceDetail/maintenanceDetail?id={{item.id}}">
+        <tui-list-cell tui-cell-class="tui-news-cell {{item.isVideo || item.imgNum>1 ?  'tui-flex-column':'tui-flex-start'}}" last="{{newsList.length-1===index}}" id="{{index}}" bind:click="detail">
+          <view class="tui-news-picbox {{item.isVideo || item.imgNum>1?'tui-w-full':'tui-w220 tui-h165'}} {{item.imgNum>1?'tui-flex-between':''}}" wx:if="{{item.imgNum>0}}">
+            <block wx:for-items="{{item.img}}" wx:for-item="items" wx:key="{{index}}">
+              <image src="{{items}}" mode="widthFix" class="tui-block {{item.imgNum>1?'tui-one-third':''}} {{item.isVideo?'tui-w-full':''}}"></image>
+            </block>
+            <!-- <view class="tui-btm-badge" wx:if="{{item.isVideo || item.imgNum>3}}">{{item.isVideo?item.time:item.imgNum+'图'}}</view>
+            <view class="tui-video" wx:if="{{item.isVideo}}">
+              <tui-icon name="play" color="#fff" size="24" tui-icon-class="tui-icon"></tui-icon>
+            </view> -->
+          </view>
+          <view class="tui-news-tbox tui-flex-column tui-flex-between {{item.imgNum===1 && !item.isVideo?'tui-h165 tui-pl-20':''}}">
+            <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">问题标题：</span>{{item.title}}</view>
+            <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">问题来源：</span>{{item.origin}}</view>
+            <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">设备类型：</span>{{item.deviceType}}</view>
+            <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">设备名称：</span>{{item.deviceName}}</view>
+            <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">设备编号：</span>{{item.deviceCode ? item.deviceCode : ''}}</view>
+            <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">点位：</span>{{item.dwName ? item.dwName : ''}}</view>
+            <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">设备ip：</span>{{item.deviceIp ? item.deviceIp : ''}}</view>
+            <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">车道号：</span>{{item.laneNum ? item.laneNum : ''}}</view>
+            <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">预警级别：</span>{{item.dwName ? item.dwName : ''}}</view>
+            <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">预警内容：</span>{{item.warnContent ? item.warnContent : ''}}</view>
+            <!-- <view class="tui-sub-box {{!item.isVideo && item.imgNum===1?'':'tui-pt20'}}">
+              <view class="tui-sub-source">{{item.source}}</view>
+              <view class="tui-sub-cmt">
+                <view>{{item.cmtsNum}}评论</view>
+                <tui-tag size="small" plain="{{true}}" shape="circleRight" tui-tag-class="tui-tag" wx:if="{{item.isTop}}">
+                  <view class="tui-scale">置顶</view>
+                </tui-tag>
+              </view>
+            </view> -->
+          </view>
+        </tui-list-cell>
+      </navigator>
     </block>
 
     <!-- 

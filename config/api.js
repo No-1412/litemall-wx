@@ -108,4 +108,5 @@ module.exports = {
   WarnLevel: BchtApiRoot + 'dict/getWarnLevel', //获取预警级别
   MaintenanceAdd: BchtApiRoot + 'maintenance/manage/addMaintenance', //新增维保管理信息（问题上报）
   MaintenanceList: BchtApiRoot + 'maintenance/manage/getMaintenanceList', //获取维保管理列表
+  SiteTree: BchtApiRoot + 'drop/siteTree', //部门点位树接口
 };

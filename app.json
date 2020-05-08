@@ -43,7 +43,8 @@
     "pages/ucenter/aftersaleDetail/aftersaleDetail",
     "pages/formValidation/formValidation",
     "pages/maintenance/maintenance",
-    "pages/news-search/news-search"
+    "pages/news-search/news-search",
+    "pages/maintenanceDetail/maintenanceDetail"
   ],
   "window": {
     "navigationBarBackgroundColor": "#FFFFFF",
