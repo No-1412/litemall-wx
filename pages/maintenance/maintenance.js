@@ -60,12 +60,10 @@ Page({
       }
       if (res.data.data.length > 0) {
         that.data.dataSources = res.data.data
-        console.log("aaaaaaaaaaaaaaa")
-        console.log(that.data.dataSources.length)
         that.setData({
-          newsList: that.data.dataSources
+          newsList: that.data.dataSources,
+          hotSearch: that.data.dataSources.map(o => o.title)
         })
-        console.log(that.data.newsList.length)
       } else {
         wx.showToast({
           title: "暂无上报问题",
@@ -86,7 +84,7 @@ Page({
 
     wx.stopPullDownRefresh()
     let options = {
-      msg: "刷新成功，为你更新了10条数据",
+      msg: "刷新成功，为你更新了" + this.data.pageSize + "条数据",
       duration: 2000,
       type: "translucent"
     };

@@ -19,8 +19,8 @@
 
   <!--新闻列表-->
   <view class="tui-news-view">
-    <block wx:for="{{newsList}}" wx:key="{{index}}" style="border-bottom:1px solid;">
-      <tui-list-cell tui-cell-class="tui-news-cell {{item.isVideo || item.imgNum>1 ?  'tui-flex-column':'tui-flex-start'}}" last="{{newsList.length-1===index}}" id="{{index}}" bind:click="detail" style="border-bottom:1px solid;">
+    <block wx:for="{{newsList}}" wx:key="{{index}}">
+      <tui-list-cell tui-cell-class="tui-news-cell {{item.isVideo || item.imgNum>1 ?  'tui-flex-column':'tui-flex-start'}}" last="{{newsList.length-1===index}}" id="{{index}}" bind:click="detail">
         <view class="tui-news-picbox {{item.isVideo || item.imgNum>1?'tui-w-full':'tui-w220 tui-h165'}} {{item.imgNum>1?'tui-flex-between':''}}" wx:if="{{item.imgNum>0}}">
           <block wx:for-items="{{item.img}}" wx:for-item="items" wx:key="{{index}}">
             <image src="{{items}}" mode="widthFix" class="tui-block {{item.imgNum>1?'tui-one-third':''}} {{item.isVideo?'tui-w-full':''}}"></image>
