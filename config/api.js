@@ -109,4 +109,6 @@ module.exports = {
   MaintenanceAdd: BchtApiRoot + 'maintenance/manage/addMaintenance', //新增维保管理信息（问题上报）
   MaintenanceList: BchtApiRoot + 'maintenance/manage/getMaintenanceList', //获取维保管理列表
   SiteTree: BchtApiRoot + 'drop/siteTree', //部门点位树接口
+  MaintenanceDetail: BchtApiRoot + 'maintenance/manage/findHandleDetail', //查询流程处理记录与问题详情
+  MaintenanceFlowAdd: BchtApiRoot + 'maintenance/manage/feedback', //保存流程处理记录
 };

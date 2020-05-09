@@ -1,23 +1,56 @@
 <view class="container">
+
+  <!--问题详情-->
+  <view class="tui-title" style="text-align: center;font-weight: bold;font-size: 15px;height: 16px;background: #fff;">问题详情</view>
+  <tui-list-cell tui-cell-class="tui-news-cell" last="{{newsList.length-1===index}}" id="{{index}}">
+    <!-- <view class="tui-news-picbox {{item.isVideo || item.imgNum>1?'tui-w-full':'tui-w220 tui-h165'}} {{item.imgNum>1?'tui-flex-between':''}}" wx:if="{{item.imgNum>0}}">
+      <block wx:for-items="{{detail.imgPaths}}" wx:key="{{index}}">
+        <image src="{{item}}" mode="widthFix" class="tui-block {{item.imgNum>1?'tui-one-third':''}} {{item.isVideo?'tui-w-full':''}}"></image>
+      </block>
+    </view> -->
+    <view class="tui-news-tbox tui-flex-column tui-flex-between {{item.imgNum===1 && !item.isVideo?'tui-h165 tui-pl-20':''}}">
+      <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">问题标题：</span>{{detail.title}}</view>
+      <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">问题来源：</span>{{detail.origin}}</view>
+      <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">设备类型：</span>{{detail.deviceType}}</view>
+      <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">设备名称：</span>{{detail.deviceName}}</view>
+      <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">设备编号：</span>{{detail.deviceCode ? detail.deviceCode : ''}}</view>
+      <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">点位：</span>{{detail.dwName ? detail.dwName : ''}}</view>
+      <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">设备ip：</span>{{detail.deviceIp ? detail.deviceIp : ''}}</view>
+      <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">车道号：</span>{{detail.laneNum ? detail.laneNum : ''}}</view>
+      <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">预警级别：</span>{{detail.dwName ? detail.dwName : ''}}</view>
+      <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">预警内容：</span>{{detail.warnContent ? detail.warnContent : ''}}</view>
+    </view>
+  </tui-list-cell>
+
+  <!--反馈记录列表-->
+  
+  <view wx:if="{{detail.flowHandleVos && detail.flowHandleVos.length>0}}" class="tui-title" style="text-align: center;font-weight: bold;font-size: 15px;height: 16px;background: #fff;margin-top: 10px;">反馈记录</view>
+  <view class="tui-news-view">
+    <block wx:for="{{detail.flowHandleVos}}" wx:key="{{index}}">
+      <tui-list-cell tui-cell-class="tui-news-cell {{item.isVideo || item.imgNum>1 ?  'tui-flex-column':'tui-flex-start'}}" last="{{newsList.length-1===index}}" id="{{index}}">
+        <!-- <view class="tui-news-picbox {{item.isVideo || item.imgNum>1?'tui-w-full':'tui-w220 tui-h165'}} {{item.imgNum>1?'tui-flex-between':''}}" wx:if="{{item.imgNum>0}}">
+          <block wx:for-items="{{item.img}}" wx:for-item="items" wx:key="{{index}}">
+            <image src="{{items}}" mode="widthFix" class="tui-block {{item.imgNum>1?'tui-one-third':''}} {{item.isVideo?'tui-w-full':''}}"></image>
+          </block>
+        </view> -->
+        <view class="tui-news-tbox tui-flex-column tui-flex-between {{item.imgNum===1 && !item.isVideo?'tui-h165 tui-pl-20':''}}">
+          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">维保状态：</span>{{item.oprationStadus == 0 ? '未完成' : '已完成'}}</view>
+          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">反馈内容：</span>{{item.feedbackContent}}</view>
+          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">创建人：</span>{{item.createUser ? item.createUser : ''}}</view>
+          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">创建时间：</span>{{item.createTime}}</view>
+        </view>
+      </tui-list-cell>
+    </block>
+  </view>
+  
+  <!--反馈内容表单-->
+  <view class="tui-title" style="text-align: center;font-weight: bold;font-size: 15px;height: 16px;background: #fff;margin-top: 10px;">请填写反馈</view>
   <form bindsubmit="formSubmit" bindreset="formReset">
     <tui-list-cell hover="{{false}}">
-      <view class="tui-line-cell">
-        <view class="tui-title"><span style="color: #ff0c0c;">*</span>反馈标题</view>
-        <input placeholder-class="phcolor" class="tui-input" name="title" placeholder="请输入问题标题" maxlength="50" type="text" />
-      </view>
-    </tui-list-cell>
-    <tui-list-cell hover="{{false}}">
-      <view class="tui-line-cell">
-        <view class="tui-title"><span style="color: #ff0c0c;">*</span>问题来源</view>
-        <input placeholder-class="phcolor" class="tui-input" name="origin" placeholder="请输入问题来源" maxlength="50" />
-      </view>
-    </tui-list-cell>
-    <tui-list-cell hover="{{false}}">
-      <view class="tui-title"><span style="color: #ff0c0c;">*</span>设备类型</view>
-      <!-- <view class="tui-line-cell"> -->
+      <view class="tui-title"><span style="color: #ff0c0c;">*</span>维保状态</view>
         <view class="tui-upload-box">
           <view>
-            <radio-group class="radio-group" name="deviceType">
+            <radio-group class="radio-group" name="status">
               <label class="tui-radio">
                   <radio wx:for-items="{{items}}" wx:key="code" value="{{item.code}}" color="#5677fc" checked="{{item.checked}}">
                     <text>{{item.name}}</text>
@@ -26,88 +59,18 @@
             </radio-group>
           </view>
         </view>
-      <!-- </view> -->
-    </tui-list-cell>
-
-    <tui-list-cell hover="{{false}}">
-      <view class="tui-line-cell">
-        <view class="tui-title"><span style="color: #ff0c0c;">*</span>设备名称</view>
-        <input placeholder-class="phcolor" class="tui-input" name="deviceName" placeholder="请输入设备名称" maxlength="50" type="text" />
-      </view>
     </tui-list-cell>
     <tui-list-cell hover="{{false}}">
       <view class="tui-line-cell">
-        <view class="tui-title">设备编号</view>
-        <input placeholder-class="phcolor" class="tui-input" name="deviceCode" placeholder="请输入设备编号" maxlength="50" type="text" />
-      </view>
-    </tui-list-cell>
-    <!-- 需要树组件 -->
-    <!-- <tui-list-cell hover="{{false}}">
-      <view class="tui-line-cell">
-        <view class="tui-title">点位</view>
-        <input placeholder-class="phcolor" class="tui-input" name="idcard" placeholder="请选择点位" maxlength="50" type="text" />
-      </view>
-    </tui-list-cell> -->
-    <tui-list-cell hover="{{false}}">
-      <view class="tui-line-cell">
-        <view class="tui-title">设备ip</view>
-        <input placeholder-class="phcolor" class="tui-input" name="deviceIp" placeholder="请输入设备ip" maxlength="50" type="text" />
+        <view class="tui-title">反馈内容</view>
       </view>
     </tui-list-cell>
     <tui-list-cell hover="{{false}}">
-      <view class="tui-line-cell">
-        <view class="tui-title">车道号</view>
-        <input placeholder-class="phcolor" class="tui-input" name="laneNum" placeholder="请输入车道号" maxlength="50" type="text" />
-      </view>
+      <textarea style="border:solid 1px #ffeded;" class="tui-textarea" name="feedbackContent" value="{{formData.feedbackContent}}" placeholder="请输入反馈内容" maxlength="500" placeholder-class="tui-phcolor-color" />
     </tui-list-cell>
-    <tui-list-cell hover="{{false}}">
-      <view class="tui-title">预警级别</view>
-        <view class="tui-upload-box">
-          <view>
-            <radio-group class="radio-group" name="warnLevel">
-              <label class="tui-radio">
-                  <radio wx:for-items="{{warnLevels}}" wx:key="code" value="{{item.code}}" color="#5677fc" checked="{{item.checked}}">
-                    <text>{{item.name}}</text>
-                  </radio>
-              </label>
-            </radio-group>
-          </view>
-        </view>
-    </tui-list-cell>
-    <tui-list-cell hover="{{false}}">
-      <view class="tui-line-cell">
-        <view class="tui-title">预警内容</view>
-        <input placeholder-class="phcolor" class="tui-input" name="warnContent" placeholder="请输入预警内容" maxlength="50" />
-      </view>
-    </tui-list-cell>
-    <!-- <tui-list-cell hover="{{false}}">
-      <view class="tui-line-cell">
-        <view class="tui-title">金额</view>
-        <input placeholder-class="phcolor" class="tui-input" name="amount" placeholder="请输入金额,允许保留两位小数" maxlength="50" type="digit" />
-      </view>
-    </tui-list-cell> -->
-
-    <tui-list-cell hover="{{false}}">
-      <view class="tui-title tui-top40">图片上传（请点击加号上传）</view>
-    </tui-list-cell>
-    <tui-list-cell hover="{{false}}">
-      <view class="tui-upload-box">
-        <!-- <view class="tui-upload-item" wx:for="{{files}}" wx:key="{{index}}"> -->
-        <view class="tui-upload-item" wx:for="{{imageList}}" wx:key="{{index}}">
-          <image src="{{url + item}}" class='tui-upload-img' bindtap="previewImage" mode="aspectFill" id="{{item}}"></image>
-          <tui-icon name="close-fill" tui-icon-class="tui-upload-del" data-index="{{index}}" catchtap="delImage"></tui-icon>
-        </view>
-        <view class="tui-upload-item tui-upload-add" hidden="{{files.length>=9}}" hover-class="tui-opcity" hover-stay-time="150" bindtap="chooseImage">
-          <text>+</text>
-        </view>
-      </view>
-    </tui-list-cell>
-
-    <!-- <view class="tui-tips">更多验证请参考文档</view> -->
 
     <view class="tui-btn-box">
       <button class="btn-primary" hover-class="btn-hover" formType="submit" type="primary">提交</button>
-      <!-- <button class="btn-primary btn-gray" hover-class="btn-gray-hover" formType="reset">Reset</button> -->
     </view>
   </form>
 </view>

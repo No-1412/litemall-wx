@@ -73,3 +73,8 @@
   margin-bottom: 36rpx;
   margin-right: 26rpx;
 }
+.tui-news-cell {
+  display: flex;
+  padding: 20rpx 30rpx;
+  border-bottom:1px solid;
+}
