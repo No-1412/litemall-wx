@@ -9,7 +9,18 @@
     <tui-list-cell hover="{{false}}">
       <view class="tui-line-cell">
         <view class="tui-title"><span style="color: #ff0c0c;">*</span>问题来源</view>
-        <input placeholder-class="phcolor" class="tui-input" name="origin" value="{{formData.origin}}" placeholder="请输入问题来源" maxlength="50" />
+        <view class="tui-upload-box">
+          <view>
+            <radio-group class="radio-group" name="origin">
+              <label class="tui-radio">
+                  <radio wx:for-items="{{origins}}" wx:key="code" value="{{item.code}}" color="#5677fc" checked="{{item.checked}}">
+                    <text>{{item.name}}</text>
+                  </radio>
+              </label>
+            </radio-group>
+          </view>
+        </view>
+        <!-- <input placeholder-class="phcolor" class="tui-input" name="origin" value="{{formData.origin}}" placeholder="请输入问题来源" maxlength="50" /> -->
       </view>
     </tui-list-cell>
     <tui-list-cell hover="{{false}}">

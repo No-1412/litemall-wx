@@ -15,7 +15,7 @@ Page({
   formSubmit: function(e) {
     //表单规则
     let rules = [{
-      name: "status",
+      name: "oprationStadus",
       rule: ["required"], //可使用区间，此处主要测试功能
       msg: ["请选择维保状态"]
     }];
@@ -30,9 +30,8 @@ Page({
       return;
     }
 
-    let that = this;
     // 记录类型为反馈
-    formData.recordType = 1;
+    // formData.recordType = 1;
     formData.issueReportId = this.data.issueReportId;
     util.request(api.MaintenanceFlowAdd, formData, "POST").then(function (res) {
       if (res.code == 0) {
@@ -70,5 +69,23 @@ Page({
       issueReportId: options.id
     })
     this.getDetail(options.id)
+  },
+  sign: function() {
+    // 记录类型为反馈
+    // formData.recordType = 1;
+    util.request(api.MaintenanceFlowSign, {issueReportId: this.data.issueReportId}, "POST").then(function (res) {
+      if (res.code == 0) {
+        wx.showToast({
+          title: "巡检问题签收成功",
+          icon: "none"
+        });
+        setTimeout(() => wx.navigateBack(), 1000);
+      } else {
+        wx.showToast({
+          title: res.msg,
+          icon: "none"
+        });
+      }
+    });
   }
 })

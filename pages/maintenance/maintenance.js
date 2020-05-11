@@ -72,6 +72,11 @@ Page({
       }
     })
   },
+  onShow: function() {
+    // wx.navigateTo({
+    //   url: '/pages/auth/accountLogin/accountLogin',
+    // })
+  },
   //页面相关事件处理函数--监听用户下拉动作
   onPullDownRefresh: function () {
     // this.setData({
@@ -80,9 +85,11 @@ Page({
     //   pullUpOn: true,
     //   loadding: false
     // })
-    this.onLoad()
-
-    wx.stopPullDownRefresh()
+    // this.onLoad()
+    wx.reLaunch({
+      url: '/pages/maintenance/maintenance',
+    })
+    
     let options = {
       msg: "刷新成功，为你更新了" + this.data.pageSize + "条数据",
       duration: 2000,
@@ -90,6 +97,7 @@ Page({
     };
     setTimeout(() => {
       utils.toast(options);
+      wx.stopPullDownRefresh()
     }, 300);
   },
 

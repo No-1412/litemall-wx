@@ -2,6 +2,7 @@
 // 本机开发时使用
 var WxApiRoot = 'http://localhost:8080/wx/';
 var BchtApiRoot = 'http://10.20.11.215:5858/';
+var BchtSSORoot = 'http://10.20.10.162:6868/';
 // 局域网测试使用
 // var WxApiRoot = 'http://192.168.1.3:8080/wx/';
 // 云平台部署时使用
@@ -110,5 +111,7 @@ module.exports = {
   MaintenanceList: BchtApiRoot + 'maintenance/manage/getMaintenanceList', //获取维保管理列表
   SiteTree: BchtApiRoot + 'drop/siteTree', //部门点位树接口
   MaintenanceDetail: BchtApiRoot + 'maintenance/manage/findHandleDetail', //查询流程处理记录与问题详情
-  MaintenanceFlowAdd: BchtApiRoot + 'maintenance/manage/feedback', //保存流程处理记录
+  MaintenanceFlowAdd: BchtApiRoot + 'maintenance/manage/feedback', //维保反馈
+  MaintenanceFlowSign: BchtApiRoot + 'maintenance/manage/sign', //维保签收
+  AuthLogin: BchtSSORoot + 'login/login', //登录
 };

@@ -23,8 +23,7 @@
   </tui-list-cell>
 
   <!--反馈记录列表-->
-  
-  <view wx:if="{{detail.flowHandleVos && detail.flowHandleVos.length>0}}" class="tui-title" style="text-align: center;font-weight: bold;font-size: 15px;height: 16px;background: #fff;margin-top: 10px;">反馈记录</view>
+  <view wx:if="{{detail.flowHandleVos && detail.flowHandleVos.length>0}}" class="tui-title" style="text-align: center;font-weight: bold;font-size: 15px;height: 16px;background: #fff;margin-top: 10px;">流转记录</view>
   <view class="tui-news-view">
     <block wx:for="{{detail.flowHandleVos}}" wx:key="{{index}}">
       <tui-list-cell tui-cell-class="tui-news-cell {{item.isVideo || item.imgNum>1 ?  'tui-flex-column':'tui-flex-start'}}" last="{{newsList.length-1===index}}" id="{{index}}">
@@ -33,44 +32,74 @@
             <image src="{{items}}" mode="widthFix" class="tui-block {{item.imgNum>1?'tui-one-third':''}} {{item.isVideo?'tui-w-full':''}}"></image>
           </block>
         </view> -->
-        <view class="tui-news-tbox tui-flex-column tui-flex-between {{item.imgNum===1 && !item.isVideo?'tui-h165 tui-pl-20':''}}">
-          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">维保状态：</span>{{item.oprationStadus == 0 ? '未完成' : '已完成'}}</view>
+        <view class="tui-news-tbox tui-flex-column tui-flex-between {{item.imgNum===1 && !item.isVideo?'tui-h165 tui-pl-20':''}}" wx:if="{{item.recordType == 0}}">
+          <view class="line">
+            <span>审核信息</span>
+          </view>
+          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">审核人：</span>{{item.createUser ? item.createUser : ''}}</view>
+          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">审核时间：</span>{{item.createTime}}</view>
+          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">审核结果：</span>{{item.examineResult ? item.examineResult : ''}}</view>
+          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">运维单位：</span>{{item.supplier}}</view>
+          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">运维人员：</span>{{item.oprationPersonnel ? item.feedbackContent : ''}}</view>
+          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">审核意见：</span>{{item.examineSuggestion}}</view>
+        </view>
+        <view class="tui-news-tbox tui-flex-column tui-flex-between {{item.imgNum===1 && !item.isVideo?'tui-h165 tui-pl-20':''}}" wx:if="{{item.recordType == 1}}">
+          <view class="line">
+            <span>签收信息</span>
+          </view>
+          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">签收人：</span>{{item.createUser ? item.createUser : ''}}</view>
+          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">签收时间：</span>{{item.createTime}}</view>
+        </view>
+        <view class="tui-news-tbox tui-flex-column tui-flex-between {{item.imgNum===1 && !item.isVideo?'tui-h165 tui-pl-20':''}}" wx:if="{{item.recordType == 2}}">
+          <view class="line">
+            <span>反馈信息</span>
+          </view>
+          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">反馈人：</span>{{item.createUser ? item.createUser : ''}}</view>
+          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">反馈时间：</span>{{item.createTime}}</view>
+          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">维保状态：</span>{{item.oprationStadus}}</view>
           <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">反馈内容：</span>{{item.feedbackContent}}</view>
-          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">创建人：</span>{{item.createUser ? item.createUser : ''}}</view>
-          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">创建时间：</span>{{item.createTime}}</view>
         </view>
       </tui-list-cell>
     </block>
   </view>
   
   <!--反馈内容表单-->
-  <view class="tui-title" style="text-align: center;font-weight: bold;font-size: 15px;height: 16px;background: #fff;margin-top: 10px;">请填写反馈</view>
-  <form bindsubmit="formSubmit" bindreset="formReset">
-    <tui-list-cell hover="{{false}}">
-      <view class="tui-title"><span style="color: #ff0c0c;">*</span>维保状态</view>
-        <view class="tui-upload-box">
-          <view>
-            <radio-group class="radio-group" name="status">
-              <label class="tui-radio">
-                  <radio wx:for-items="{{items}}" wx:key="code" value="{{item.code}}" color="#5677fc" checked="{{item.checked}}">
-                    <text>{{item.name}}</text>
-                  </radio>
-              </label>
-            </radio-group>
+  <view wx:if="{{detail.handleStatus == 2}}">
+    <view class="tui-title" style="text-align: center;font-weight: bold;font-size: 15px;height: 16px;background: #fff;margin-top: 10px;">请填写反馈</view>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <tui-list-cell hover="{{false}}">
+        <view class="tui-title"><span style="color: #ff0c0c;">*</span>维保状态</view>
+          <view class="tui-upload-box">
+            <view>
+              <radio-group class="radio-group" name="oprationStadus">
+                <label class="tui-radio">
+                    <radio wx:for-items="{{items}}" wx:key="code" value="{{item.code}}" color="#5677fc" checked="{{item.checked}}">
+                      <text>{{item.name}}</text>
+                    </radio>
+                </label>
+              </radio-group>
+            </view>
           </view>
+      </tui-list-cell>
+      <tui-list-cell hover="{{false}}">
+        <view class="tui-line-cell">
+          <view class="tui-title">反馈内容</view>
         </view>
-    </tui-list-cell>
-    <tui-list-cell hover="{{false}}">
-      <view class="tui-line-cell">
-        <view class="tui-title">反馈内容</view>
-      </view>
-    </tui-list-cell>
-    <tui-list-cell hover="{{false}}">
-      <textarea style="border:solid 1px #ffeded;" class="tui-textarea" name="feedbackContent" value="{{formData.feedbackContent}}" placeholder="请输入反馈内容" maxlength="500" placeholder-class="tui-phcolor-color" />
-    </tui-list-cell>
+      </tui-list-cell>
+      <tui-list-cell hover="{{false}}">
+        <textarea style="border:solid 1px #ffeded;" class="tui-textarea" name="feedbackContent" value="{{formData.feedbackContent}}" placeholder="请输入反馈内容" maxlength="500" placeholder-class="tui-phcolor-color" />
+      </tui-list-cell>
 
+      <view class="tui-btn-box">
+        <button class="btn-primary" hover-class="btn-hover" formType="submit" type="primary">提交</button>
+      </view>
+    </form>
+  </view>
+
+  <!-- 签收 -->
+  <view wx:if="{{detail.handleStatus == 1}}">
     <view class="tui-btn-box">
-      <button class="btn-primary" hover-class="btn-hover" formType="submit" type="primary">提交</button>
+      <button type="primary" class="login-btn" bindtap="sign">签收</button>
     </view>
-  </form>
+  </view>
 </view>

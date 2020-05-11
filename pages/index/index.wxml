@@ -1,14 +1,8 @@
-<navigator url="/pages/apply/apply?id=1" class="t">
-  <view class="txt">{{'巡检上报 >'}}</view>
-</navigator>
-
-<navigator url="/pages/formValidation/formValidation" class="t">
-  <view class="txt">{{'巡检上报1 >'}}</view>
-</navigator>
-
 <!--index.wxml-->
 <view class="container">
-<view class="search">
+
+  欢迎使用百诚慧通全网全设备智能运维平台,巡检上报
+<!-- <view class="search">
     <navigator url="/pages/search/search" class="input">
       <van-icon name="search"/>
       <text class="txt">商品搜索, 共{{goodsCount}}款好物</text>
@@ -202,5 +196,5 @@
     <navigator url="/pages/category/category?id={{item.id}}" class="t">
       <view class="txt">{{'更多'+item.name+'好物 >'}}</view>
     </navigator>
-  </view>
+  </view> -->
 </view>

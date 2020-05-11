@@ -5,14 +5,7 @@ const api = require('../../config/api.js');
 Page({
   data: {
     files: [], //最多上传9张图片
-    items: [
-      { code: 'USA', name: '美国' },
-      { code: 'CHN', name: '中国', checked: 'true' },
-      { code: 'BRA', name: '巴西' },
-      { code: 'JPN', name: '日本' },
-      { code: 'ENG', name: '英国' },
-      { code: 'FRA', name: '法国' }, 
-    ],
+    items: [],
     warnLevels: [],
     //图片地址
     imageList: [],
@@ -20,7 +13,12 @@ Page({
     statusArr: [],
     limit: 9,
     url: api.Download + '?path=',
-    unnormalizedValue: []
+    unnormalizedValue: [],
+    origins: [
+      {code: '0', name: '系统检测'},
+      {code: '1', name: 'web上报'},
+      {code: '2', name: '微信上报'},
+    ]
   },
   onLoad: function(options) {
     this.init();

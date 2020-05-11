@@ -2,13 +2,14 @@
   <view class="profile-info" bindtap="goLogin">
     <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
     <view class="info">
-      <text class="name">{{userInfo.nickName}}</text>
+      <!-- <text class="name">{{hasLogin ? '您好,' + userInfo.nickname : userInfo.nickname}}</text> -->
+      <text class="name">{{userInfo.nickname}}</text>
     </view>
   </view>
 
   <view class='separate'></view>
 
-  <view class='user_area'>
+  <!-- <view class='user_area'>
     <view class='user_row' bindtap='goOrder'>
       <view class='user_row_left'>我的订单</view>
       <van-icon class='user_row_right' name="arrow" />      
@@ -101,7 +102,13 @@
       <view class='user_column_item_text'>关于我们</view>
     </view>
   </view>
-  <view class='separate'></view>
+  <view class='separate'></view> -->
 
+  <view style="justify-content: center;display: flex;">
+    <view class='user_column_item' wx-if='{{hasLogin}}'>
+      <view class='user_column_item_text'>手机号: {{userInfo.phone}}</view>
+      <view class='user_column_item_text'>邮箱: {{userInfo.email}}</view>
+    </view>
+  </view>
   <view class="logout" wx:if="{{hasLogin}}" bindtap="exitLogin">退出登录</view>
 </view>

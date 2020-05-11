@@ -42,7 +42,7 @@ Page({
     }
 
     wx.request({
-      url: api.AuthLoginByAccount,
+      url: api.AuthLogin,
       data: {
         username: that.data.username,
         password: that.data.password
@@ -52,18 +52,19 @@ Page({
         'content-type': 'application/json'
       },
       success: function(res) {
-        if (res.data.errno == 0) {
+        if (res.data.code == 0) {
           that.setData({
             loginErrorCount: 0
           });
           app.globalData.hasLogin = true;
-          wx.setStorageSync('userInfo', res.data.data.userInfo);
+          wx.setStorageSync('userInfo', res.data.data.user);
           wx.setStorage({
             key: "token",
-            data: res.data.data.token,
+            data: res.data.data.jwt,
             success: function() {
-              wx.switchTab({
-                url: '/pages/ucenter/index/index'
+              wx.reLaunch({
+                // url: '/pages/ucenter/index/index'
+                url: '/pages/formValidation/formValidation'
               });
             }
           });
@@ -72,7 +73,8 @@ Page({
             loginErrorCount: that.data.loginErrorCount + 1
           });
           app.globalData.hasLogin = false;
-          util.showErrorToast('账户登录失败');
+          util.showErrorToast(res.data.msg);
+          // util.showErrorToast('账户登录失败');
         }
       }
     });

@@ -6,7 +6,7 @@ var app = getApp();
 Page({
   data: {
     userInfo: {
-      nickName: '点击登录',
+      nickname: '点击登录',
       avatarUrl: '/static/images/my.png'
     },
     order: {
@@ -28,6 +28,7 @@ Page({
     //获取用户的登录信息
     if (app.globalData.hasLogin) {
       let userInfo = wx.getStorageSync('userInfo');
+      userInfo.avatarUrl = '/static/images/kidd.jpg';
       this.setData({
         userInfo: userInfo,
         hasLogin: true
@@ -54,7 +55,8 @@ Page({
   goLogin() {
     if (!this.data.hasLogin) {
       wx.navigateTo({
-        url: "/pages/auth/login/login"
+        url: "/pages/auth/accountLogin/accountLogin"
+        // url: "/pages/auth/login/login"
       });
     }
   },
@@ -219,8 +221,7 @@ Page({
         if (!res.confirm) {
           return;
         }
-
-        util.request(api.AuthLogout, {}, 'POST');
+        // util.request(api.AuthLogout, {}, 'POST');
         app.globalData.hasLogin = false;
         wx.removeStorageSync('token');
         wx.removeStorageSync('userInfo');
