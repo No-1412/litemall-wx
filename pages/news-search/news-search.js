@@ -135,7 +135,7 @@ Page({
     util.request(api.MaintenanceList, {
       pageNum: this.data.pageIndex++,
       pageSize: this.data.pageSize,
-      title: keyword
+      keywords: keyword
     }).then(function (res) {
       if (res.code != 0) {
         wx.showToast({

@@ -35,15 +35,15 @@
     "pages/maintenanceDetail/maintenanceDetail"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarBackgroundColor": "#013161",
     "navigationBarTitleText": "litemall小程序商城",
     "enablePullDownRefresh": false,
-    "navigationBarTextStyle": "black",
-    "backgroundColor": "#FFFFFF",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#013161",
     "backgroundTextStyle": "dark"
   },
   "tabBar": {
-    "backgroundColor": "#fafafa",
+    "backgroundColor": "#081421",
     "borderStyle": "white",
     "selectedColor": "#AB956D",
     "color": "#666",

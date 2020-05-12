@@ -93,7 +93,7 @@
       <view class="tui-title tui-top40">预警内容</view>
     </tui-list-cell>
     <view class="tui-cells">
-      <textarea class="tui-textarea" name="warnContent" value="{{formData.warnContent}}" placeholder="请输入预警内容" maxlength="500" placeholder-class="tui-phcolor-color" />
+      <textarea style="background: #fff;" class="tui-textarea" name="warnContent" value="{{formData.warnContent}}" placeholder="请输入预警内容" maxlength="500" placeholder-class="tui-phcolor-color" />
       <!-- <view class="tui-textarea-counter">0/500</view> -->
     </view>
     <!-- <tui-list-cell hover="{{false}}">

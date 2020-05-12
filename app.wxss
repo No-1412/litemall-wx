@@ -1,8 +1,11 @@
 /**app.wxss**/
+page{
+  background-color: #013161;
+}
 
 .container {
   box-sizing: border-box;
-  background-color: #f4f4f4;
+  background-color: #013161;
   font-family: PingFangSC-Light, helvetica, 'Heiti SC';
 }
 
@@ -15,5 +18,5 @@ view, image, text, navigator {
 view, text {
   font-family: PingFangSC-Light, helvetica, 'Heiti SC';
   font-size: 29rpx;
-  color: #333;
+  color: #BFCBD7;
 }

@@ -58,8 +58,15 @@ Page({
     let that = this;
     util.request(api.MaintenanceDetail, {issueReportId: id}).then(function(res) {
       if (res.code === 0) {
+        let permit = false;
+        if (res.data.candidateIds) {
+          const user = wx.getStorageSync('userInfo');
+          if (res.data.candidateIds.indexOf(user.username) > -1) 
+            permit = true;
+        }
         that.setData({
           detail: res.data,
+          permit: permit
         });
       }
     });

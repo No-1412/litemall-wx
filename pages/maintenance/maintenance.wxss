@@ -12,6 +12,7 @@ page {
 .tui-searchbox {
   padding: 16rpx 20rpx;
   box-sizing: border-box;
+  background: #90abd6;
 }
 
 .tui-rolling-search {

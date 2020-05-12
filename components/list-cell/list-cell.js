@@ -27,7 +27,8 @@ Component({
     },
     bgcolor:{
       type: String,
-      value: "#fff" //背景颜色
+      value: "#013161" //背景颜色
+      // value: "#fff" //背景颜色
     },
     size:{
       type: Number,

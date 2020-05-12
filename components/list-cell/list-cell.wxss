@@ -47,3 +47,11 @@
   margin-top: -7px;
   right: 30rpx;
 }
+
+.tui-list-cell:active {
+  background: #013161!important;
+}
+
+.tui-list-cell:hover {
+  background: #013161!important;
+}

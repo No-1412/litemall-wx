@@ -42,6 +42,7 @@ function request(url, data = {}, method = "GET") {
             try {
               wx.removeStorageSync('userInfo');
               wx.removeStorageSync('token');
+              // app.globalData.hasLogin = false;
             } catch (e) {
               // Do something when catch error
             }
@@ -54,6 +55,9 @@ function request(url, data = {}, method = "GET") {
           }
         } else {
           reject(res.errMsg);
+          wx.removeStorageSync('userInfo');
+          wx.removeStorageSync('token');
+          // app.globalData.hasLogin = false;
           wx.navigateTo({
             url: '/pages/auth/accountLogin/accountLogin',
           })

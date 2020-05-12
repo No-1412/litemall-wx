@@ -28,12 +28,12 @@ Page({
     //获取用户的登录信息
     if (app.globalData.hasLogin) {
       let userInfo = wx.getStorageSync('userInfo');
+      console.log(userInfo)
       userInfo.avatarUrl = '/static/images/kidd.jpg';
       this.setData({
         userInfo: userInfo,
         hasLogin: true
       });
-
       let that = this;
       util.request(api.UserIndex).then(function(res) {
         if (res.errno === 0) {
@@ -42,6 +42,9 @@ Page({
           });
         }
       });
+    } else {
+      wx.removeStorageSync('token');
+      wx.removeStorageSync('userInfo');
     }
 
   },
@@ -222,9 +225,9 @@ Page({
           return;
         }
         // util.request(api.AuthLogout, {}, 'POST');
-        app.globalData.hasLogin = false;
         wx.removeStorageSync('token');
         wx.removeStorageSync('userInfo');
+        app.globalData.hasLogin = false;
         wx.reLaunch({
           url: '/pages/index/index'
         });
