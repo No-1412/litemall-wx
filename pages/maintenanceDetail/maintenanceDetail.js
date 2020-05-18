@@ -64,6 +64,22 @@ Page({
           if (res.data.candidateIds.indexOf(user.username) > -1) 
             permit = true;
         }
+        let info = res.data;
+        if (res.data.warnContent) {
+          try {
+            let warnContent = JSON.parse(info.warnContent);
+            if (typeof warnContent == "object") {
+              let deviceType = warnContent.deviceType;
+              let realValue = warnContent.realValue ? warnContent.realValue : "空";
+              let field = warnContent.field;
+              let monitorNumericalValue = warnContent.monitorNumericalValue;
+              let name = warnContent.name;
+              let operator = warnContent.operator;
+              info.warnContent = `${deviceType}:${name},字段:${field}=${realValue},不${operator}预警值:${monitorNumericalValue}`;
+            }
+          } catch(e) {
+          }
+        }
         that.setData({
           detail: res.data,
           permit: permit

@@ -45,7 +45,7 @@
             <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">设备ip：</span>{{item.deviceIp ? item.deviceIp : ''}}</view>
             <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">车道号：</span>{{item.laneNum ? item.laneNum : ''}}</view>
             <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">预警级别：</span>{{item.dwName ? item.dwName : ''}}</view>
-            <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">预警内容：</span>{{item.warnContent ? item.warnContent : ''}}</view>
+            <!-- <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">预警内容：</span>{{item.warnContent ? item.warnContent : ''}}</view> -->
             <!-- <view class="tui-sub-box {{!item.isVideo && item.imgNum===1?'':'tui-pt20'}}">
               <view class="tui-sub-source">{{item.source}}</view>
               <view class="tui-sub-cmt">
