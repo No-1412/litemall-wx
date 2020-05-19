@@ -6,7 +6,11 @@ Page({
   data: {
     items: [
       { code: '0', name: '未完成' },
-      { code: '1', name: '已完成'}
+      { code: '1', name: '已完成' }
+    ],
+    inRanges: [
+      { code: '0', name: '否' },
+      { code: '1', name: '是' }
     ],
   },
   onLoad: function(options) {
@@ -18,6 +22,10 @@ Page({
       name: "oprationStadus",
       rule: ["required"], //可使用区间，此处主要测试功能
       msg: ["请选择维保状态"]
+    },{
+      name: "inRange",
+      rule: ["required"], //可使用区间，此处主要测试功能
+      msg: ["请选择范围"]
     }];
     //进行表单检查
     let formData = e.detail.value;

@@ -21,7 +21,7 @@
       <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">点位：</span>{{detail.dwName ? detail.dwName : ''}}</view>
       <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">设备ip：</span>{{detail.deviceIp ? detail.deviceIp : ''}}</view>
       <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">车道号：</span>{{detail.laneNum ? detail.laneNum : ''}}</view>
-      <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">预警级别：</span>{{detail.dwName ? detail.dwName : ''}}</view>
+      <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">预警级别：</span>{{detail.warnLevelName ? detail.warnLevelName : ''}}</view>
       <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">预警内容：</span>{{detail.warnContent ? detail.warnContent : ''}}</view>
     </view>
   </tui-list-cell>
@@ -63,7 +63,10 @@
           </view>
           <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">反馈人：</span>{{item.createUser ? item.createUser : ''}}</view>
           <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">反馈时间：</span>{{item.createTime}}</view>
-          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">维保状态：</span>{{item.oprationStadus}}</view>
+          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">维保状态：</span>
+            <span wx:if="{{item.oprationStadus == 0}}">未完成</span>
+            <span wx:if="{{item.oprationStadus == 1}}">已完成</span>
+          </view>
           <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">反馈内容：</span>{{item.feedbackContent ? item.feedbackContent : ''}}</view>
         </view>
       </tui-list-cell>
@@ -88,13 +91,30 @@
             </view>
           </view>
       </tui-list-cell>
+
+      <tui-list-cell hover="{{false}}">
+        <view class="tui-title"><span style="color: #ff0c0c;">*</span>是否范围内</view>
+          <view class="tui-upload-box">
+            <view>
+              <radio-group class="radio-group" name="inRange">
+                <label class="tui-radio">
+                    <radio wx:for-items="{{inRanges}}" wx:key="code" value="{{item.code}}" color="#5677fc" checked="{{item.checked}}">
+                      <text>{{item.name}}</text>
+                    </radio>
+                </label>
+              </radio-group>
+            </view>
+          </view>
+      </tui-list-cell>
+
+
       <tui-list-cell hover="{{false}}">
         <view class="tui-line-cell">
           <view class="tui-title">反馈内容</view>
         </view>
       </tui-list-cell>
       <tui-list-cell hover="{{false}}">
-        <textarea style="border:solid 1px #ffeded;" class="tui-textarea" name="feedbackContent" value="{{formData.feedbackContent}}" placeholder="请输入反馈内容" maxlength="500" placeholder-class="tui-phcolor-color" />
+        <textarea style="border:solid 1px #ffeded;color:#fff;" class="tui-textarea" name="feedbackContent" value="{{formData.feedbackContent}}" placeholder="请输入反馈内容" maxlength="500" placeholder-class="tui-phcolor-color" />
       </tui-list-cell>
 
       <view class="tui-btn-box">

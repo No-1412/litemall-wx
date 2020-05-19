@@ -18,7 +18,7 @@
 
 	.tui-input {
 		font-size: 32rpx;
-		color: #333;
+		color: #fff;
 		padding-left: 20rpx;
 		flex: 1;
 	}
@@ -56,7 +56,7 @@
 	.tui-top40 {
 		padding: 55rpx 0 30rpx 0;
 		font-size: 32rpx;
-		color: #333;
+		color: #fff;
 	}
 
 .radio-group {
