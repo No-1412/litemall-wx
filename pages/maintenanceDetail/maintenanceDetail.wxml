@@ -23,6 +23,11 @@
       <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">车道号：</span>{{detail.laneNum ? detail.laneNum : ''}}</view>
       <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">预警级别：</span>{{detail.warnLevelName ? detail.warnLevelName : ''}}</view>
       <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">预警内容：</span>{{detail.warnContent ? detail.warnContent : ''}}</view>
+      <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">上报图片：</span>
+        <block wx:for-items="{{imagePaths}}" wx:key="{{index}}">
+          <image src="{{url + item}}" class='tui-upload-img' bindtap="previewImage" mode="aspectFill" id="{{path.id}}"></image>
+        </block>
+      </view>
     </view>
   </tui-list-cell>
 
@@ -68,6 +73,11 @@
             <span wx:if="{{item.oprationStadus == 1}}">已完成</span>
           </view>
           <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">反馈内容：</span>{{item.feedbackContent ? item.feedbackContent : ''}}</view>
+          <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">反馈图片：</span>
+            <block wx:for-items="{{item.issuePicturePaths}}" wx:for-item="path" wx:key="{{index}}">
+              <image src="{{url + path.picturePath}}" class='tui-upload-img' bindtap="previewImage" mode="aspectFill" id="{{path.id}}"></image>
+            </block>
+          </view>
         </view>
       </tui-list-cell>
     </block>
@@ -116,6 +126,21 @@
       <tui-list-cell hover="{{false}}">
         <textarea style="border:solid 1px #ffeded;color:#fff;" class="tui-textarea" name="feedbackContent" value="{{formData.feedbackContent}}" placeholder="请输入反馈内容" maxlength="500" placeholder-class="tui-phcolor-color" />
       </tui-list-cell>
+
+    <tui-list-cell hover="{{false}}">
+      <view class="tui-title">上报图片（请点击加号上传）</view>
+    </tui-list-cell>
+    <tui-list-cell hover="{{false}}">
+      <view class="tui-upload-box">
+        <view class="tui-upload-item" wx:for="{{imageList}}" wx:key="{{index}}">
+          <image src="{{url + item}}" class='tui-upload-img' bindtap="previewImage" mode="aspectFill" id="{{item}}"></image>
+          <tui-icon name="close-fill" tui-icon-class="tui-upload-del" data-index="{{index}}" catchtap="delImage"></tui-icon>
+        </view>
+        <view class="tui-upload-item tui-upload-add" hidden="{{files.length>=9}}" hover-class="tui-opcity" hover-stay-time="150" bindtap="chooseImage">
+          <text>+</text>
+        </view>
+      </view>
+    </tui-list-cell>
 
       <view class="tui-btn-box">
         <button class="btn-primary" hover-class="btn-hover" formType="submit" type="primary">提交</button>
