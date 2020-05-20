@@ -45,6 +45,13 @@
             <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">设备ip：</span>{{item.deviceIp ? item.deviceIp : ''}}</view>
             <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">车道号：</span>{{item.laneNum ? item.laneNum : ''}}</view>
             <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">预警级别：</span>{{item.warnLevelName ? item.warnLevelName : ''}}</view>
+            <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">处理状态：</span>
+              <span wx:if="{{item.handleStatus == 0}}">待审核</span> 
+              <span wx:if="{{item.handleStatus == 1}}">待签收</span> 
+              <span wx:if="{{item.handleStatus == 2}}">待反馈</span> 
+              <span wx:if="{{item.handleStatus == 3}}">待验证</span> 
+              <span wx:if="{{item.handleStatus == 4}}">已完成</span> 
+            </view>
             <!-- <view class="tui-news-title {{(!item.isVideo && item.imgNum===1)|| item.imgNum===0?'':'tui-pt20'}}"><span style="font-weight:bold;">预警内容：</span>{{item.warnContent ? item.warnContent : ''}}</view> -->
             <!-- <view class="tui-sub-box {{!item.isVideo && item.imgNum===1?'':'tui-pt20'}}">
               <view class="tui-sub-source">{{item.source}}</view>
